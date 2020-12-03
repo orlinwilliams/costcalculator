@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Generar costos</h5>
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <label for="hourValue">Valor hora de trabajo</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Precio que vas a cobrar al cliente, por ejemplo podrías utilizar el precio mínimo por hora y/o sumarle lo que creas conveniente"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="120.."
+              id="hourValue"
+            />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label for="numberOfTeamMembers"
+                >Número miembros del equipo</label
+              >
+              <fa-icon
+                [icon]="faQuestionCircle"
+                placement="top"
+                ngbTooltip="Aveces necesitaras ayuda, puedes colocar aquí la cantidad de personas que contratastes para el proyecto"
+              ></fa-icon>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="2"
+                id="numberOfTeamMembers"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-7 col-sm-8 col-md-10 col-12">
+            <label for="effort">Esfuerzo de codificación en el SDLC</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Valor del esfuerzo medio de la fase de desarrollo, puedes utilizar el valor por defecto"
+            ></fa-icon>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="2"
+              id="effort"
+              value="33.40%"
+            />
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-cost">Generar costos</button>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Datos generador</h5>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Datos generador</h5>
+  </div>
+</div>

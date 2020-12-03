@@ -1,0 +1,169 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Cálculo de tiempo</h5>
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+            <label for="linesQuantity">Cantidad de líneas</label
+            ><fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta es la cantidad de líenas que contiene su proyecto, para esto puedes instalar una extensión en tu editor, o utilizar herramientas como CLOC"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="1500.."
+              id="linesQuantity"
+            />
+          </div>
+          <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+            <label for="developmentMode">Modo de desarrollo</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Puedes utilizar a, b, c ó d son valores que dependen de acuerdo al tipo de sistema desarrollado"
+            ></fa-icon>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="a, b, c"
+              id="developmentMode"
+            />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="form-group">
+        <h6 class="text-center">Actores</h6>
+        <div class="row">
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="simples">Simples</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: cuando otro sistema externo interactua con el sistema a desarrollar mediante una interfaz de programación definida y conocida (API, Application Programming Interface)"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="2.."
+              id="simples"
+            />
+          </div>
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="simples">Medios</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: Otro sistema externo que interacúa a través de protocolo (conjunto de reglas que especifican el intercambio de inforamción u ordenes durante la comunicacíon entre entidades que forman parte de la red)"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="2.."
+              id="simples"
+            />
+          </div>
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="simples">Complejos</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: Cuando un usuario físico interactúa a través de un intergaz gráfica"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="2.."
+              id="simples"
+            />
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <h6 class="text-center">Casos de uso</h6>
+        <div class="row">
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="simpleUse">Simples</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Este caso de uso contiene menos de 3 transacciones"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="3.."
+              id="simpleUse"
+            />
+          </div>
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="medioUse">Medios</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Este caso de uso contiene menos de 4 a 7 transacciones"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="3.."
+              id="medioUse"
+            />
+          </div>
+          <div class="col-lg-4 col-12 col-md-4 col-sm-12">
+            <label for="complexUse">Complejos</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Este caso de uso contiene más de 7 transacciones"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="3.."
+              id="complexUse"
+            />
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <h6 class="text-center">Niveles de factores</h6>
+        <div class="row">
+          <div class="col-lg-4 col-12 col-md-6 col-sm-12">
+            <label for="technicalFactor">Técnicos</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta cantidad depende de los factores o de las caulidades que tenga su proyecto, por ejemplo: Facilidad de uso, Portabilidad, Concurrencia"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="3.."
+              id="technicalFactor"
+            />
+          </div>
+          <div class="col-lg-4 col-12 col-md-6 col-sm-12">
+            <label for="ambientalFactor">Ambientales</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Esta cantidad depende de los factores o de las caulidades que tenga su proyecto, por ejemplo: Experiencia en la aplicación, Motivación, Capacidad de análisis"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="3.."
+              id="ambientalFactor"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

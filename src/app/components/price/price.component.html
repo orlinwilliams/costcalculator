@@ -1,0 +1,80 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Precio mínimo por hora de trabajo</h5>
+    <form>
+      <div class="form-froup">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <label for="monthlySalary" class="label-small">Sueldo mensual deseado</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="El sueldo debe ser un salario realista, por ejemplo usted puede promediar el salario de un desarrallor de software"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="5000.."
+              id="monthlySalary"
+            />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <label for="fixedCosts">Gastos fijos</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Son gastos en el desarrollo del software, por ejemplo: Sercicios de internet, telefonía, energia electrica, Papeleria, transporte"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="800.."
+              id="fixedCosts"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-froup">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <label for="monthlyHours" class="label-small">Horas de trabajo en el mes</label>
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Puedes contar tus horas de trabajo cada dia y sumarlas, por ejemplo si trabajas 6 horas diarias de lunes a viernes serian 132 horas al mes"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="30"
+              id="monthlyHours"
+            />
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <label for="hoursNotWorked"
+              >Horas improductivas</label
+            >
+            <fa-icon
+              [icon]="faQuestionCircle"
+              placement="top"
+              ngbTooltip="Estas horas representan el tiempo gastado en reuniones de trabajo, tareas administrativas, negociaciones"
+            ></fa-icon>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="800.."
+              id="hoursNotWorked"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-12">
+            <span>Su precio mínimo por hora de trabajo es: </span> <strong><span>L 110</span></strong> 
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
