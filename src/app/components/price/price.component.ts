@@ -9,8 +9,10 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class PriceComponent implements OnInit {
   @Output()currentPrice:EventEmitter<number> = new EventEmitter();
+  
   faQuestionCircle = faQuestionCircle;
   price: number = 0;
+
   formPrice = new FormGroup({
     monthlySalary: new FormControl('', [Validators.required]),
     fixedCosts: new FormControl('', [Validators.required]),
@@ -20,11 +22,14 @@ export class PriceComponent implements OnInit {
   constructor(private dataService:DataService) {}
 
   ngOnInit(): void {}
+  //FUNCION QUE CALCULA EL PRECIO MINIMO POR HORA DE TRABAJO
   generatePrice() {
     let monthlySalary = this.formPrice.get('monthlySalary').value;
     let fixedCosts = this.formPrice.get('fixedCosts').value;
     let monthlyHours = this.formPrice.get('monthlyHours').value;
     let hoursNotWorked = this.formPrice.get('hoursNotWorked').value;
+    
+    //FORMULA PARA CALCULAR EL PRECIO
     this.price = (monthlySalary + fixedCosts) / (monthlyHours + hoursNotWorked);
     this.dataService.dataPrice = this.price;
     this.currentPrice.emit(this.price);

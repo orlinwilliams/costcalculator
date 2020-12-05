@@ -16,7 +16,7 @@
               class="form-control"
               placeholder="120.."
               id="hourValue"
-              formControlName ="hourValue"
+              formControlName="hourValue"
             />
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -34,7 +34,7 @@
                 class="form-control"
                 placeholder="2"
                 id="numberOfTeamMembers"
-                formControlName ="numberOfTeamMembers"
+                formControlName="numberOfTeamMembers"
               />
             </div>
           </div>
@@ -54,13 +54,19 @@
               type="text"
               class="form-control"
               placeholder="2"
-              id="effort"      
-              formControlName ="effort"
+              id="effort"
+              formControlName="effort"
             />
           </div>
         </div>
       </div>
-      <button class="btn btn-cost" [disabled]="!formCosts.valid" (click)="generateCosts()">Generar costos</button>
+      <button
+        class="btn btn-cost"
+        [disabled]="!formCosts.valid"
+        (click)="generateCosts()"
+      >
+        Generar costos
+      </button>
     </form>
   </div>
 </div>

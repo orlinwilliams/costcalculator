@@ -23,6 +23,8 @@ export class TimeComponent implements OnInit {
   constructor(private dataService:DataService) {}
 
   ngOnInit(): void {}
+  
+  //FUNCION QUE ENVIA LOS DATOS/PARAMETROS PARA CALCULAR EL TIEMPO AL OTRO COMPONENTE
   onTime() {
     this.dataService.dataTime = this.time;
     
