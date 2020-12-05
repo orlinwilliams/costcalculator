@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { HtmlTagDefinition } from '@angular/compiler';
+import { DataService } from 'src/app/services/data.service';
+
 @Component({
   selector: 'app-time',
   templateUrl: './time.component.html',
-  styleUrls: ['./time.component.css']
+  styleUrls: ['./time.component.css'],
 })
 export class TimeComponent implements OnInit {
   faQuestionCircle = faQuestionCircle;
+
+  time: any = {
+    linesQuantity: '',
+    developmentMode: '',
+  };
   
   // ---------------start model of use case points [variables]--------------------
   public TCF:number = 0;
@@ -17,37 +23,19 @@ export class TimeComponent implements OnInit {
   public UUCP:number = 0;
   public UCP:number = 0;
   public randomHoursMan:number[] = [0,0,0,0,0];
-  // ------------end model of use case points [variables]--------------------
+  // ----------------end model of use case points [variables]--------------------
 
-  constructor() { }
+  constructor(private dataService:DataService) {}
 
   // ---------------start model of use case points [methods]--------------------
   gotTCF(TCF) {
     this.TCF = TCF;
-    
-    this.calculateUCP();
-
     this.calculateHoursMan();
-
-    console.log(`
-      TCF = ${this.TCF}
-      TAF = ${this.TAF}
-      UCP = ${this.UCP}
-      HoursMan = [${this.randomHoursMan}]`);
   }
 
   gotTAF(TAF) {
     this.TAF = TAF;
-
-    this.calculateUCP();
-
     this.calculateHoursMan();
-
-    console.log(`
-      TCF = ${this.TCF}
-      TAF = ${this.TAF}
-      UCP = ${this.UCP}
-      randomHoursMan = [${this.randomHoursMan}]`);
   }
 
   calculateUUCP() {
@@ -63,8 +51,6 @@ export class TimeComponent implements OnInit {
 
     this.UUCP = this.AUW + this.UUCW;
 
-    this.calculateUCP();
-
     this.calculateHoursMan();
   }
 
@@ -72,21 +58,34 @@ export class TimeComponent implements OnInit {
     this.UCP = this.UUCP * this.TCF * this.TAF;
   }
 
-  calculateHoursMan() {
-    for (let index = 0; index < this.randomHoursMan.length; index++) {
-      this.randomHoursMan[index] = this.UCP*this.getRandomInt(15,25);
-      
-    }
-  }
-
   getRandomInt(min, max):number {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-  // ------------end model of use case points [methods]--------------------
 
+  calculateHoursMan() {
+    
+    this.calculateUCP();
 
+    for (let index = 0; index < this.randomHoursMan.length; index++) {
+      this.randomHoursMan[index] = this.UCP*this.getRandomInt(15,25);
+    }
 
-  ngOnInit(): void {
+    console.log(`
+    AUW = ${this.AUW}
+    UUCW = ${this.UUCW}
+    UUCP = ${this.UUCP}
+    TCF = ${this.TCF}
+    TAF = ${this.TAF}
+    UCP = ${this.UCP}
+    HoursMan = [${this.randomHoursMan}]`);
   }
+  // ----------------end model of use case points [methods]--------------------
 
+  ngOnInit(): void {}
+  
+  //FUNCION QUE ENVIA LOS DATOS/PARAMETROS PARA CALCULAR EL TIEMPO AL OTRO COMPONENTE
+  onTime() {
+    this.dataService.dataTime = this.time;
+    
+  }
 }

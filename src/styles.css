@@ -32,3 +32,8 @@ h6{
 .label-small{
   font-size: 2.4vh;
 }
+.btn-cost{
+  background: #5CAABF;
+  border-radius: 8px;
+  color: white;
+}

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title text-center">Generar costos</h5>
-    <form>
+    <form [formGroup]="formCosts">
       <div class="form-group">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -16,6 +16,7 @@
               class="form-control"
               placeholder="120.."
               id="hourValue"
+              formControlName="hourValue"
             />
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -33,6 +34,7 @@
                 class="form-control"
                 placeholder="2"
                 id="numberOfTeamMembers"
+                formControlName="numberOfTeamMembers"
               />
             </div>
           </div>
@@ -53,12 +55,18 @@
               class="form-control"
               placeholder="2"
               id="effort"
-              value="33.40%"
+              formControlName="effort"
             />
           </div>
         </div>
       </div>
-      <button class="btn btn-cost">Generar costos</button>
+      <button
+        class="btn btn-cost"
+        [disabled]="!formCosts.valid"
+        (click)="generateCosts()"
+      >
+        Generar costos
+      </button>
     </form>
   </div>
 </div>
