@@ -1,0 +1,219 @@
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Peso de factores técnicos</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    Donde un nivel de 0 a 2 es irrelevante, de 3 a 4 es medio y 5 es esencial.
+    <table class="table mt-3" id="tech-factors-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Peso</th>
+          <th>Nivel</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Sistema distribuido</th>
+          <td class="TFweight">2</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[0]}}</td>
+        </tr>
+        <tr>
+          <th>Rendimiento o tiempo de respuesta</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[1]}}</td>
+        </tr>
+        <tr>
+          <th>Eficiencia del usuario final</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[2]}}</td>
+        </tr>
+        <tr>
+          <th>Procesamiento interno complejo</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[3]}}</td>
+        </tr>
+        <tr>
+          <th>El código debe ser reutilizable</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[4]}}</td>
+        </tr>
+        <tr>
+          <th>Facilidad de instalación</th>
+          <td class="TFweight">0.5</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[5]}}</td>
+        </tr>
+        <tr>
+          <th>Facilidad de uso</th>
+          <td class="TFweight">0.5</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[6]}}</td>
+        </tr>
+        <tr>
+          <th>Portabilidad</th>
+          <td class="TFweight">2</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[7]}}</td>
+        </tr>
+        <tr>
+          <th>Facilidad de cambio</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[8]}}</td>
+        </tr>
+        <tr>
+          <th>Concurrencia</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[9]}}</td>
+        </tr>
+        <tr>
+          <th>Características especiales de seguridad</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[10]}}</td>
+        </tr>
+        <tr>
+          <th>Provee acceso directo a terceras partes</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[11]}}</td>
+        </tr>
+        <tr>
+          <th>Se requiere facilidades especiales de entrenamiento al usuario</th>
+          <td class="TFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTCF()"
+            >
+          </td>
+          <td>{{TFactorElements[12]}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right">Peso de los factores técnicos</td>
+          <td>{{TCF.toFixed(4)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light border" (click)="modal.close('Save click')">Finalizado</button>
+  </div>
+</ng-template>
+
+<button
+  type="button"
+  class="form-control btn-light border"
+  id="technicalFactor"
+  (click)="open(longContent)"
+>+</button>

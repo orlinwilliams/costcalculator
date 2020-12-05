@@ -1,0 +1,149 @@
+<ng-template #longContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Peso de factores ambientales</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    Donde un nivel de 0 a 2 indica un impacto negativo en el proyecto, 3 es un impacto medio y de 4 a 5 indica un impacto positivo en el proyecto.
+    <table class="table mt-3" id="env-factors-table">
+      <thead>
+        <tr>
+          <th>Factor</th>
+          <th>Peso</th>
+          <th>Nivel</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Familiaridad con el modelo del proyecto utilizado</th>
+          <td class="AFweight">1.5</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[0]}}</td>
+        </tr>
+        <tr>
+          <th>Experiencia en la aplicación</th>
+          <td class="AFweight">0.5</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[1]}}</td>
+        </tr>
+        <tr>
+          <th>Experiencia en programación orientada a objetos</th>
+          <td class="AFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[2]}}</td>
+        </tr>
+        <tr>
+          <th>Capacidad del análista lider</th>
+          <td class="AFweight">0.5</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[3]}}</td>
+        </tr>
+        <tr>
+          <th>Motivación</th>
+          <td class="AFweight">1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[4]}}</td>
+        </tr>
+        <tr>
+          <th>Estabilidad de los requerimientos</th>
+          <td class="AFweight">2</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[5]}}</td>
+        </tr>
+        <tr>
+          <th>Personal de medio tiempo</th>
+          <td class="AFweight">-1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[6]}}</td>
+        </tr>
+        <tr>
+          <th>Dificultad en el lenguaje de programación</th>
+          <td class="AFweight">-1</td>
+          <td>
+            <input 
+              type="number" 
+              min="0" max="5" 
+              class="form-control mx-auto" 
+              placeholder="0..5"
+              (keyup)="calculateTAF()"
+            >
+          </td>
+          <td>{{AFactorElements[7]}}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right">Peso de los factores ambientales:</td>
+          <td>{{TAF.toFixed(4)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light border" (click)="modal.close('Save click')">Finalizado</button>
+  </div>
+</ng-template>
+
+<button
+  type="button"
+  class="form-control btn-light border"
+  id="ambientalFactor"
+  (click)="open(longContent)"
+>+</button>

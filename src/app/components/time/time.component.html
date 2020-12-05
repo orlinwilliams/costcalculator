@@ -9,7 +9,7 @@
             ><fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta es la cantidad de líenas que contiene su proyecto, para esto puedes instalar una extensión en tu editor, o utilizar herramientas como CLOC"
+              ngbTooltip="Esta es la cantidad de líneas que contiene su proyecto, para esto puede instalar una extensión en su editor, o utilizar herramientas como CLOC."
             ></fa-icon>
             <input
               type="number"
@@ -23,7 +23,7 @@
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Puedes utilizar a, b, c ó d son valores que dependen de acuerdo al tipo de sistema desarrollado"
+              ngbTooltip="Puede utilizar a, b, c ó d son valores que dependen de acuerdo al tipo de sistema desarrollado"
             ></fa-icon>
             <input
               type="text"
@@ -39,45 +39,48 @@
         <h6 class="text-center">Actores</h6>
         <div class="row">
           <div class="col-lg-4 col-12 col-md-4 col-sm-12">
-            <label for="simples">Simples</label>
+            <label for="simpleActor">Simples</label>
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: cuando otro sistema externo interactua con el sistema a desarrollar mediante una interfaz de programación definida y conocida (API, Application Programming Interface)"
+              ngbTooltip="Los actores simples son comunicaciónes entre sistemas, esta cantidad depende de la complejidad de las tareas, por ejemplo: cuando otro sistema externo interactua con el sistema a desarrollar mediante una interfaz de programación definida y conocida (API, Application Programming Interface)"
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="2.."
-              id="simples"
+              placeholder="Ingrese un valor númerico"
+              id="simpleActor"
+              (keyup)="calculateUUCP()"
             />
           </div>
           <div class="col-lg-4 col-12 col-md-4 col-sm-12">
-            <label for="simples">Medios</label>
+            <label for="mediumActor">Medios</label>
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: Otro sistema externo que interacúa a través de protocolo (conjunto de reglas que especifican el intercambio de inforamción u ordenes durante la comunicacíon entre entidades que forman parte de la red)"
+              ngbTooltip="Los actores medios son aquellos que interactuan por protocolos de líneas de comando o similares, por ejemplo: Otro sistema externo que interacúa a través de SSH"
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="2.."
-              id="simples"
+              placeholder="Ingrese un valor númerico"
+              id="mediumActor"
+              (keyup)="calculateUUCP()"
             />
           </div>
           <div class="col-lg-4 col-12 col-md-4 col-sm-12">
-            <label for="simples">Complejos</label>
+            <label for="complexActor">Complejos</label>
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta cantidad depende de la complejidad de las tareas, por ejemplo: Cuando un usuario físico interactúa a través de un intergaz gráfica"
+              ngbTooltip="Los actores complejos son aquellos que actuan directamente en el sistema con la interfaz gráfica de usuario, son los usuarios mismos."
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="2.."
-              id="simples"
+              placeholder="Ingrese un valor númerico"
+              id="complexActor"
+              (keyup)="calculateUUCP()"
             />
           </div>
         </div>
@@ -91,27 +94,29 @@
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Este caso de uso contiene menos de 3 transacciones"
+              ngbTooltip="Número de casos de uso que contienen menos de 3 transacciones"
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="3.."
+              placeholder="Ingrese un valor númerico"
               id="simpleUse"
+              (keyup)="calculateUUCP()"
             />
           </div>
           <div class="col-lg-4 col-12 col-md-4 col-sm-12">
-            <label for="medioUse">Medios</label>
+            <label for="mediumUse">Medios</label>
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Este caso de uso contiene menos de 4 a 7 transacciones"
+              ngbTooltip="Número de casos de uso que contienen de 4 a 7 transacciones"
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="3.."
-              id="medioUse"
+              placeholder="Ingrese un valor númerico"
+              id="mediumUse"
+              (keyup)="calculateUUCP()"
             />
           </div>
           <div class="col-lg-4 col-12 col-md-4 col-sm-12">
@@ -119,13 +124,14 @@
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Este caso de uso contiene más de 7 transacciones"
+              ngbTooltip="Número de casos de uso que contienen más de 7 transacciones"
             ></fa-icon>
             <input
               type="number"
               class="form-control"
-              placeholder="3.."
+              placeholder="Ingrese un valor númerico"
               id="complexUse"
+              (keyup)="calculateUUCP()"
             />
           </div>
         </div>
@@ -139,28 +145,22 @@
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta cantidad depende de los factores o de las caulidades que tenga su proyecto, por ejemplo: Facilidad de uso, Portabilidad, Concurrencia"
+              ngbTooltip="Los factores técnicos son los relacionados con el manejo y experiencia de tecnologías"
             ></fa-icon>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="3.."
-              id="technicalFactor"
-            />
+            <app-tech-factors-table
+              (calculatedTCF)="gotTCF($event)"
+            ></app-tech-factors-table>
           </div>
           <div class="col-lg-4 col-12 col-md-6 col-sm-12">
             <label for="ambientalFactor">Ambientales</label>
             <fa-icon
               [icon]="faQuestionCircle"
               placement="top"
-              ngbTooltip="Esta cantidad depende de los factores o de las caulidades que tenga su proyecto, por ejemplo: Experiencia en la aplicación, Motivación, Capacidad de análisis"
+              ngbTooltip="Los factores ambientales son los relacionados con el entorno y equipo de trabajo"
             ></fa-icon>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="3.."
-              id="ambientalFactor"
-            />
+            <app-env-factors-table
+            (calculatedTAF)="gotTAF($event)"
+            ></app-env-factors-table>
           </div>
         </div>
       </div>

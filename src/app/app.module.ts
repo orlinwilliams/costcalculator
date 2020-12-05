@@ -11,6 +11,8 @@ import { GreetComponent } from './components/greet/greet.component';
 import { TimeComponent } from './components/time/time.component';
 import { PriceComponent } from './components/price/price.component';
 import { CostsComponent } from './components/costs/costs.component';
+import { TechFactorsTableComponent } from './components/tech-factors-table/tech-factors-table.component';
+import { EnvFactorsTableComponent } from './components/env-factors-table/env-factors-table.component';
 
 
 
@@ -21,7 +23,9 @@ import { CostsComponent } from './components/costs/costs.component';
     GreetComponent,
     TimeComponent,
     PriceComponent,
-    CostsComponent
+    CostsComponent,
+    TechFactorsTableComponent,
+    EnvFactorsTableComponent
     
   ],
   imports: [
