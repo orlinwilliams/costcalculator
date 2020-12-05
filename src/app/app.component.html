@@ -9,11 +9,11 @@
     <!-- CALCULO DEL TIEMPO Y PRECIO MÍNIMO POR HORA DE TRABAJO-->  
     <div class="col-lg-6 col-md-8 col-12 col-sm-12">
       <app-time></app-time>
-      <app-price></app-price>
+      <app-price (currentPrice)="price = $event"></app-price>
     </div>
     <!-- GENERADOR DE COSTOS Y DATOS GENERADOS  -->  
     <div class="col-lg-6 col-md-8 col-12 col-sm-12">
-      <app-costs></app-costs>
+      <app-costs [currentPrice]="price"></app-costs>
     </div>  
   </div>
 </div>

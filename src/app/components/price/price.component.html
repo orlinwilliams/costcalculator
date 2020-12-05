@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title text-center">Precio mínimo por hora de trabajo</h5>
-    <form>
-      <div class="form-froup">
+    <form [formGroup]="formPrice">
+      <div class="form-group">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
             <label for="monthlySalary" class="label-small">Sueldo mensual deseado</label>
@@ -16,6 +16,7 @@
               class="form-control"
               placeholder="5000.."
               id="monthlySalary"
+              formControlName="monthlySalary"
             />
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -30,11 +31,12 @@
               class="form-control"
               placeholder="800.."
               id="fixedCosts"
+              formControlName="fixedCosts"
             />
           </div>
         </div>
       </div>
-      <div class="form-froup">
+      <div class="form-group">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
             <label for="monthlyHours" class="label-small">Horas de trabajo en el mes</label>
@@ -48,6 +50,7 @@
               class="form-control"
               placeholder="30"
               id="monthlyHours"
+              formControlName="monthlyHours"
             />
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -64,14 +67,19 @@
               class="form-control"
               placeholder="800.."
               id="hoursNotWorked"
+              formControlName="hoursNotWorked"
             />
           </div>
         </div>
       </div>
       <div class="form-group">
+        <button class="btn btn-cost" [disabled]="!formPrice.valid" (click)="generatePrice()">Generar precio</button>
+      </div>
+
+      <div class="form-group">
         <div class="row">
           <div class="col-12">
-            <span>Su precio mínimo por hora de trabajo es: </span> <strong><span>L 110</span></strong> 
+            <span>Su precio mínimo por hora de trabajo es: </span> <strong><span>L {{price.toFixed(2)}}</span></strong> 
           </div>
         </div>
       </div>
