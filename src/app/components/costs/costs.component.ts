@@ -8,10 +8,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from 'src/app/services/data.service';
-<<<<<<< Updated upstream
-=======
 import { Chart } from 'node_modules/chart.js';
->>>>>>> Stashed changes
 @Component({
   selector: 'app-costs',
   templateUrl: './costs.component.html',
@@ -30,11 +27,6 @@ export class CostsComponent implements OnInit, OnChanges {
   });
 
   constructor(private dataService: DataService) {}
-<<<<<<< Updated upstream
-  ngOnInit(): void {}
-  
-  //EVENTO QUE CAPTURA EL PRECIO DE MINIMO DE HORA DE TRABAJO
-=======
 
   ngOnInit(): void {
     this.renderChart('costChart', [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]);
@@ -100,7 +92,6 @@ export class CostsComponent implements OnInit, OnChanges {
   }
 
   //Evento que captura el precio mínimo 
->>>>>>> Stashed changes
   ngOnChanges(changes: SimpleChanges): void {
     if (this.currentPrice > 0) {
       this.formCosts.patchValue({ hourValue: this.currentPrice.toFixed(2) });
@@ -112,10 +103,6 @@ export class CostsComponent implements OnInit, OnChanges {
     //--------------Graficas de tiempo--------------
     this.renderChart('timeChart',[550, 143, 543, 422, 133], this.dataService.HoursMan);
 
-<<<<<<< Updated upstream
-    //IMPRIMI LA INFORMACION DEL DE LOS PARAMETROS PARA CALCULAR EL TIEMPO
-    console.log(this.dataService.dataTime);
-=======
     //--------------Grafica de costos---------------
   
     //--------Modelo SDLC basado en modelo de puntos de caso-------
@@ -128,6 +115,5 @@ export class CostsComponent implements OnInit, OnChanges {
     //---------------Fin modelo SDLC----------------------------- 
 
     this.renderChart('costChart',[550000, 143000, 543000, 422000, 133000], this.VMT);
->>>>>>> Stashed changes
   }
 }
