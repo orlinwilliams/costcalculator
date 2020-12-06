@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  dataTime:any = {};
-  dataPrice:number =0;
-  constructor() { }
+  dataTime: any = {};
+  dataPrice: number = 0;
+  HoursMan: any = [];
+  constructor() {}
 }
