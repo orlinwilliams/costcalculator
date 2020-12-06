@@ -70,15 +70,14 @@ export class TimeComponent implements OnInit {
       this.randomHoursMan[index] = this.UCP*this.getRandomInt(15,25);
     }
 
-    // console.log(`
-    // AUW = ${this.AUW}
-    // UUCW = ${this.UUCW}
-    // UUCP = ${this.UUCP}
-    // TCF = ${this.TCF}
-    // TAF = ${this.TAF}
-    // UCP = ${this.UCP}
-    // HoursMan = [${this.randomHoursMan}]`);
-    this.dataService.HoursMan = this.randomHoursMan;
+    console.log(`
+    AUW = ${this.AUW}
+    UUCW = ${this.UUCW}
+    UUCP = ${this.UUCP}
+    TCF = ${this.TCF}
+    TAF = ${this.TAF}
+    UCP = ${this.UCP}
+    HoursMan = [${this.randomHoursMan}]`);
   }
   // ----------------end model of use case points [methods]--------------------
 
