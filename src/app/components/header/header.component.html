@@ -1,5 +1,24 @@
-<nav class="navbar navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Calculadora de costos</a>  
-  </div>  
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">Calculadora de costos</a>  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+      <li ngbDropdown class="nav-item active mr-3" placement="bottom-right" display="dynamic">
+        <!-- <button class="btn btn-light">Cargar datos</button> -->
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" ngbDropdownToggle>
+          Cargar datos
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownMenu2" id="listOfStates">
+          <div *ngFor="let state of states">
+            <button class="dropdown-item" type="button" (click)="loadData(state)">{{state.data.date}}</button>         
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-light" (click)="saveData()">Guardar datos</button>
+      </li>
+    </ul>
+  </div> 
 </nav>

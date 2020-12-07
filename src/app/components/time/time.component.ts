@@ -79,6 +79,10 @@ export class TimeComponent implements OnInit {
     UCP = ${this.UCP}
     HoursMan = [${this.randomHoursMan}]`);
   }
+
+  // loadDataFromState(state) {
+  //   console.log('Data from time component:',state.data.simpleActor)
+  // }
   // ----------------end model of use case points [methods]--------------------
 
   ngOnInit(): void {}
