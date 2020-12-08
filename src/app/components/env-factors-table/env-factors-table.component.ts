@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from 'src/app/services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-env-factors-table',
@@ -11,14 +12,27 @@ export class EnvFactorsTableComponent implements OnInit {
 
   @Output() calculatedTAF = new EventEmitter();
 
-  private AFactorElements:number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0];
-  private previousState:any =['','','','','','','','','','','','',''];
+  private AFactorElements:number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  private previousState:any =['', '', '', '', '' ,'' ,'' ,'' ,'' ,'' ,'', '', ''];
   private AFactor:number = 0;
   public TAF:number = 0;
+  private subscription: Subscription;
 
   constructor(
     private modalService: NgbModal,
+    private dataService: DataService,
     ) {}
+
+  async ngOnInit() {
+    this.subscription = await this.dataService.getChangesInObjectData().subscribe((data) => {
+      let levels = document.querySelectorAll("#tech-factors-table input[type=number]");
+  
+      for (let index = 0; index < levels.length; index++) {
+        this.previousState[index] = data.ambientalFactorsLevels[index];
+      }
+      this.calculateTAF();
+    });
+  }
 
   public calculateTAF() {
 
@@ -27,7 +41,7 @@ export class EnvFactorsTableComponent implements OnInit {
 
     for (let index = 0; index < levels.length; index++) {
       this.AFactorElements[index] = +weights[index].textContent * +(<HTMLInputElement>levels[index]).value;
-      this.previousState[index] = (<HTMLInputElement>levels[index]).value;
+      this.dataService.data.ambientalFactorsLevels[index] = (<HTMLInputElement>levels[index]).value;
     }
 
     this.AFactor = 0;
@@ -46,15 +60,14 @@ export class EnvFactorsTableComponent implements OnInit {
 
   open(longContent) {
     this.modalService.open(longContent, {ariaLabelledBy: 'modal-basic-title' , size: 'lg', scrollable: true})
-      
-      let levels = document.querySelectorAll("#env-factors-table input[type=number]");
+    
+    let levels = document.querySelectorAll("#env-factors-table input[type=number]");
 
-      for (let index = 0; index < levels.length; index++) {
-          (<HTMLInputElement>levels[index]).value = `${this.previousState[index]}` ;
-      }
-  }
+    for (let index = 0; index < levels.length; index++) {
+      (<HTMLInputElement>levels[index]).value = this.dataService.data.ambientalFactorsLevels[index];
+    }
 
-  ngOnInit(): void {
+    this.calculateTAF();
   }
 
 }

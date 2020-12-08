@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tech-factors-table',
@@ -11,14 +13,27 @@ export class TechFactorsTableComponent implements OnInit {
 
   @Output() calculatedTCF = new EventEmitter();
   
-  private TFactorElements:number[] = [0,0,0,0,0,0,0,0,0,0,0,0,0];
-  private previousState:any =['','','','','','','','','','','','',''];
+  private TFactorElements:number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  private previousState:any = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
   private TFactor:number = 0;
   public TCF:number = 0;
+  private subscription: Subscription;
 
   constructor(
     private modalService: NgbModal,
+    private dataService: DataService,
     ) {}
+
+  async ngOnInit() {
+    this.subscription = await this.dataService.getChangesInObjectData().subscribe((data) => {
+      let levels = document.querySelectorAll("#tech-factors-table input[type=number]");
+
+      for (let index = 0; index < levels.length; index++) {
+        this.previousState[index] = data.technicalFactorsLevels[index];
+      }
+      this.calculateTCF();
+    });
+  }
 
   public calculateTCF() {
 
@@ -27,7 +42,7 @@ export class TechFactorsTableComponent implements OnInit {
 
     for (let index = 0; index < levels.length; index++) {
       this.TFactorElements[index] = +weights[index].textContent * +(<HTMLInputElement>levels[index]).value;
-      this.previousState[index] = (<HTMLInputElement>levels[index]).value;
+      this.dataService.data.technicalFactorsLevels[index] = (<HTMLInputElement>levels[index]).value;
     }
 
     this.TFactor = 0;
@@ -46,16 +61,13 @@ export class TechFactorsTableComponent implements OnInit {
 
   open(longContent) {
     this.modalService.open(longContent, {ariaLabelledBy: 'modal-basic-title' , size: 'lg', scrollable: true})
-      
-      let levels = document.querySelectorAll("#tech-factors-table input[type=number]");
 
-      for (let index = 0; index < levels.length; index++) {
-          (<HTMLInputElement>levels[index]).value = `${this.previousState[index]}` ;
-      }
+    let levels = document.querySelectorAll("#tech-factors-table input[type=number]");
+
+    for (let index = 0; index < levels.length; index++) {
+        (<HTMLInputElement>levels[index]).value = this.dataService.data.technicalFactorsLevels[index];
+    }
+
+    this.calculateTCF();
   }
-
-
-  ngOnInit(): void {
-  }
-
 }

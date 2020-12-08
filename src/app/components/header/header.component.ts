@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
-// import {TimeComponent} from '../time/time.component';
+import { DataService } from "../../services/data.service";
 
 @Component({
-  // providers:[TimeComponent],
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
 
   public data:any;
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private firestoreService: FirestoreService, 
-    // private comp:TimeComponent,
+    private dataService: DataService,
   ) { }
 
   ngOnInit(): void {
@@ -28,45 +28,23 @@ export class HeaderComponent implements OnInit {
           data: stateData.payload.doc.data()
         });
       })
-      console.log(this.states);
     });
   }
 
   // CREATE (CRUD)
   async saveData() {
     
+    // console.log(this.dataService.data);
+
     let today = new Date();
 
-    // STATIC DATA
-    this.data = {
-      'date': '',
-      'linesQuantity': 30000,
-      'developmentMode': 1,
-      'simpleActor': 1,
-      'mediumActor': 1,
-      'complexActor': 1,
-      'simpleUse': 1,
-      'mediumUse': 1,
-      'complexUse': 1,
-      'technicalFactorsLevels': [1,0,0,1,0,3,4,4,1,3,1,4,2],
-      'ambientalFactorsLevels': [1,0,0,1,0,3,4,4],
-      'randomHoursMan': [0,0,0,0,0],
-      'monthlySalary': 20000,
-      'fixedCosts': 900,
-      'monthlyHours': 160,
-      'hoursNotWorked':20,
-      'hourValue': 120,
-      'numberOfTeamMembers': 3,
-      'effort': 33.40,
-    };
-
-    this.data.date = `${today.toDateString()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+    this.dataService.data.date = `${today.toDateString()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
 
     // SAVE DATA IN FIREBASE
     try {
 
-      await this.firestoreService.createState(this.data);
-      alert(`Datos guardados con el nombre: ${this.data.date}`);
+      await this.firestoreService.createState(this.dataService.data);
+      alert(`Datos guardados con el nombre: ${this.dataService.data.date}`);
 
     } catch (error) {
       console.log(error);
@@ -76,49 +54,44 @@ export class HeaderComponent implements OnInit {
 
   // READ (CRUD) AND LOAD DATA INTO THE INPUTS
   loadData(state) {
-
-    console.log(state);
-    // this.comp.loadDataFromState(state);
     
-    // COCOMO
-    (<HTMLInputElement>document.getElementById('linesQuantity')).value = state.data.linesQuantity;
-    (<HTMLInputElement>document.getElementById('developmentMode')).value = state.data.developmentMode;
+    // console.log(state.data);
 
-    //actors
-    (<HTMLInputElement>document.getElementById('simpleActor')).value = state.data.simpleActor;
-    (<HTMLInputElement>document.getElementById('mediumActor')).value = state.data.mediumActor;
-    (<HTMLInputElement>document.getElementById('complexActor')).value = state.data.complexActor;
+    // this.dataService.data = state.data;
 
-    //Use cases
-    (<HTMLInputElement>document.getElementById('simpleUse')).value = state.data.simpleUse;
-    (<HTMLInputElement>document.getElementById('mediumUse')).value = state.data.mediumUse;
-    (<HTMLInputElement>document.getElementById('complexUse')).value = state.data.complexUse;
+    this.dataService.changeObjectData(state.data);
 
-    //levels of technical factors
-    let levels = document.querySelectorAll("#tech-factors-table input[type=number]");
-    for (let index = 0; index < levels.length; index++) {
-      (<HTMLInputElement>levels[index]).value = state.data.technicalFactorsLevels[index];
-    }
+    // console.log(this.dataService.data);
 
-    //levels of ambiental factors
-    levels = document.querySelectorAll("#env-factors-table input[type=number]");
-    console.log(levels.length);
-    for (let index = 0; index < levels.length; index++) {
-      (<HTMLInputElement>levels[index]).value = state.data.ambientalFactorsLevels[index];
-      console.log((<HTMLInputElement>levels[index]).value);
-    }
+    // // COCOMO
+    // (<HTMLInputElement>document.getElementById('linesQuantity')).value = this.dataService.data.linesQuantity;
+    // (<HTMLInputElement>document.getElementById('developmentMode')).value = this.dataService.data.developmentMode;
 
-    //price
-    (<HTMLInputElement>document.getElementById('monthlySalary')).value = state.data.monthlySalary;
-    (<HTMLInputElement>document.getElementById('fixedCosts')).value = state.data.fixedCosts;
-    (<HTMLInputElement>document.getElementById('monthlyHours')).value = state.data.monthlyHours;
-    (<HTMLInputElement>document.getElementById('hoursNotWorked')).value = state.data.hoursNotWorked;
+    // // actors
+    // (<HTMLInputElement>document.getElementById('simpleActor')).value = this.dataService.data.simpleActors;
+    // (<HTMLInputElement>document.getElementById('mediumActor')).value = this.dataService.data.mediumActors;
+    // (<HTMLInputElement>document.getElementById('complexActor')).value = this.dataService.data.complexActors;
 
-    //cost
-    (<HTMLInputElement>document.getElementById('hourValue')).value = state.data.hourValue;
-    (<HTMLInputElement>document.getElementById('numberOfTeamMembers')).value = state.data.numberOfTeamMembers;
-    (<HTMLInputElement>document.getElementById('effort')).value = state.data.effort;
+    // // Use cases
+    // (<HTMLInputElement>document.getElementById('simpleUse')).value = this.dataService.data.simpleUse;
+    // (<HTMLInputElement>document.getElementById('mediumUse')).value = this.dataService.data.mediumUse;
+    // (<HTMLInputElement>document.getElementById('complexUse')).value = this.dataService.data.complexUse;
+
+    // // price
+    // (<HTMLInputElement>document.getElementById('monthlySalary')).value = this.dataService.data.monthlySalary;
+    // (<HTMLInputElement>document.getElementById('fixedCosts')).value = this.dataService.data.fixedCosts;
+    // (<HTMLInputElement>document.getElementById('monthlyHours')).value = this.dataService.data.monthlyHours;
+    // (<HTMLInputElement>document.getElementById('hoursNotWorked')).value = this.dataService.data.hoursNotWorked;
+
+    // // cost
+    // (<HTMLInputElement>document.getElementById('hourValue')).value = this.dataService.data.hourValue;
+    // (<HTMLInputElement>document.getElementById('numberOfTeamMembers')).value = this.dataService.data.numberOfTeamMembers;
+    // (<HTMLInputElement>document.getElementById('effort')).value = this.dataService.data.effort;
     
+  }
+
+  acercaDe() {
+    alert(`Universidad Nacional Autónoma de Honduras\n\nDesarrollado por:\nAlejandro Claros\nOrlin Gomez\nErick Arguijo`);
   }
 
 }
