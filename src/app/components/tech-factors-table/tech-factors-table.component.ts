@@ -70,4 +70,10 @@ export class TechFactorsTableComponent implements OnInit {
 
     this.calculateTCF();
   }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+  
 }

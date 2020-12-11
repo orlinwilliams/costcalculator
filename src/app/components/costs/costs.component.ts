@@ -223,4 +223,9 @@ export class CostsComponent implements OnInit, OnChanges {
 
     this.renderChart('update','costChart',this.VMTCOCOMO, this.VMT);
   }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
 }

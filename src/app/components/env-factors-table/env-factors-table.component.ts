@@ -70,4 +70,9 @@ export class EnvFactorsTableComponent implements OnInit {
     this.calculateTAF();
   }
 
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+
 }

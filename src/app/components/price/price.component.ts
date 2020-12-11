@@ -55,4 +55,10 @@ export class PriceComponent implements OnInit {
     this.dataService.data.hourValue = +(this.price.toFixed(2));
     
   }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
+  
 }

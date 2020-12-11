@@ -120,19 +120,20 @@ export class TimeComponent implements OnInit {
 
     }
     else if (this.time.developmentMode == 2) {
-        a = 3.0;
-        b = 1.12;
-        c = 2.5;
-        d = 0.35;
+      a = 3.0;
+      b = 1.12;
+      c = 2.5;
+      d = 0.35;
 
     }
-    else {
-        let a = 2.8;
-        let b = 1.20;
-        let c = 2.5;
-        let d = 0.32;
+    else if (this.time.developmentMode == 3) {
+      a = 2.8;
+      b = 1.20;
+      c = 2.5;
+      d = 0.32;
 
     }
+
     this.KLOCS = this.time.linesQuantity * 0.001;
     this.Ei = a * Math.pow(this.KLOCS, b);
     this.Td = c * Math.pow(this.Ei, d);
