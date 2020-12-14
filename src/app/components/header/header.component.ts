@@ -37,14 +37,19 @@ export class HeaderComponent implements OnInit {
     // console.log(this.dataService.data);
 
     let today = new Date();
+    let name = (<HTMLInputElement>document.getElementById('name-state')).value;
 
     this.dataService.data.date = `${today.toDateString()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+    this.dataService.data.name = name;
 
     // SAVE DATA IN FIREBASE
     try {
 
       await this.firestoreService.createState(this.dataService.data);
-      alert(`Datos guardados con el nombre: ${this.dataService.data.date}`);
+
+      (<HTMLInputElement>document.getElementById('name-state')).value = '';
+
+      alert(`Datos guardados con el nombre: ${this.dataService.data.name}`);
 
     } catch (error) {
       console.log(error);
@@ -54,39 +59,8 @@ export class HeaderComponent implements OnInit {
 
   // READ (CRUD) AND LOAD DATA INTO THE INPUTS
   loadData(state) {
-    
-    // console.log(state.data);
-
-    // this.dataService.data = state.data;
 
     this.dataService.changeObjectData(state.data);
-
-    // console.log(this.dataService.data);
-
-    // // COCOMO
-    // (<HTMLInputElement>document.getElementById('linesQuantity')).value = this.dataService.data.linesQuantity;
-    // (<HTMLInputElement>document.getElementById('developmentMode')).value = this.dataService.data.developmentMode;
-
-    // // actors
-    // (<HTMLInputElement>document.getElementById('simpleActor')).value = this.dataService.data.simpleActors;
-    // (<HTMLInputElement>document.getElementById('mediumActor')).value = this.dataService.data.mediumActors;
-    // (<HTMLInputElement>document.getElementById('complexActor')).value = this.dataService.data.complexActors;
-
-    // // Use cases
-    // (<HTMLInputElement>document.getElementById('simpleUse')).value = this.dataService.data.simpleUse;
-    // (<HTMLInputElement>document.getElementById('mediumUse')).value = this.dataService.data.mediumUse;
-    // (<HTMLInputElement>document.getElementById('complexUse')).value = this.dataService.data.complexUse;
-
-    // // price
-    // (<HTMLInputElement>document.getElementById('monthlySalary')).value = this.dataService.data.monthlySalary;
-    // (<HTMLInputElement>document.getElementById('fixedCosts')).value = this.dataService.data.fixedCosts;
-    // (<HTMLInputElement>document.getElementById('monthlyHours')).value = this.dataService.data.monthlyHours;
-    // (<HTMLInputElement>document.getElementById('hoursNotWorked')).value = this.dataService.data.hoursNotWorked;
-
-    // // cost
-    // (<HTMLInputElement>document.getElementById('hourValue')).value = this.dataService.data.hourValue;
-    // (<HTMLInputElement>document.getElementById('numberOfTeamMembers')).value = this.dataService.data.numberOfTeamMembers;
-    // (<HTMLInputElement>document.getElementById('effort')).value = this.dataService.data.effort;
     
   }
 

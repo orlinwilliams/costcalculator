@@ -16,6 +16,7 @@ export class EnvFactorsTableComponent implements OnInit {
   private previousState:any =['', '', '', '', '' ,'' ,'' ,'' ,'' ,'' ,'', '', ''];
   private AFactor:number = 0;
   public TAF:number = 0;
+  public messageError = '';
   private subscription: Subscription;
 
   constructor(
@@ -42,7 +43,20 @@ export class EnvFactorsTableComponent implements OnInit {
     for (let index = 0; index < levels.length; index++) {
       this.AFactorElements[index] = +weights[index].textContent * +(<HTMLInputElement>levels[index]).value;
       this.dataService.data.ambientalFactorsLevels[index] = (<HTMLInputElement>levels[index]).value;
+
+      // Validate if a level is out of range
+      if(+(<HTMLInputElement>levels[index]).value > 5 || +(<HTMLInputElement>levels[index]).value < 0){
+        this.AFactorElements = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.messageError = 'Nivel fuera de rango';
+        break;
+
+      } else {
+        this.messageError = '';
+
+      }
+
     }
+    
 
     this.AFactor = 0;
 

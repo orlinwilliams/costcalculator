@@ -14,12 +14,26 @@
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownMenu2" id="listOfStates">
           <div *ngFor="let state of states">
-            <button class="dropdown-item" type="button" (click)="loadData(state)">{{state.data.date}}</button>         
+            <button class="dropdown-item" type="button" (click)="loadData(state)">{{state.data.name}}</button>         
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <button class="btn btn-light" (click)="saveData()">Guardar datos</button>
+      <li ngbDropdown class="nav-item active mr-3" placement="bottom-right" display="dynamic">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu3" ngbDropdownToggle>
+          Guardar..
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownMenu3" id="saveName">
+          <div class="p-2">
+            <div class="form-group">
+              <label for="name-state">Nombre de estimación</label>
+              <input type="text" placeholder="Proyecto Foo.." id="name-state" class="form-control">
+            </div>
+            <hr>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-light" (click)="saveData()">Guardar datos</button>         
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
   </div> 

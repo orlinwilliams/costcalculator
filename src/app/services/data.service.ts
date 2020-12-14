@@ -15,6 +15,7 @@ export class DataService {
 
   // for Firebase data
   data: any = {
+    'name':'',
     'date': '',
     'linesQuantity': '',
     'developmentMode': '',
@@ -35,6 +36,10 @@ export class DataService {
     'hourValue': '',
     'numberOfTeamMembers': '',
     'effort': 33.40,
+    'COCOMODataset':[0, 0, 0, 0, 0],
+    'UseCaseDataset':[0, 0, 0, 0, 0],
+    'VMTCOCOMO':[0, 0, 0, 0, 0],
+    'VMT':[0, 0, 0, 0, 0],
   };
 
 

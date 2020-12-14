@@ -51,8 +51,15 @@ export class PriceComponent implements OnInit {
     //FORMULA PARA CALCULAR EL PRECIO
     this.price = (monthlySalary + fixedCosts) / (monthlyHours - hoursNotWorked);
     this.dataService.dataPrice = this.price;
-    this.currentPrice.emit(this.price);
-    this.dataService.data.hourValue = +(this.price.toFixed(2));
+    
+    if(!isNaN(this.price)){
+      this.currentPrice.emit(this.price);
+      this.dataService.data.hourValue = +(this.price.toFixed(2));
+
+    } else {
+      this.currentPrice.emit(this.dataService.data.hourValue);
+
+    }
     
   }
 

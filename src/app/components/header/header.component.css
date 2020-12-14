@@ -13,3 +13,10 @@ nav a {
   max-width: 500%;
   overflow-y: scroll;
 }
+
+#saveName {
+  /* overflow: hidden; */
+  max-height: 1300%;
+  max-width: 500%;
+  /* overflow-y: scroll; */
+}

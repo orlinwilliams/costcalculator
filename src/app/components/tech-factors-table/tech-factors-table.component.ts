@@ -17,6 +17,7 @@ export class TechFactorsTableComponent implements OnInit {
   private previousState:any = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
   private TFactor:number = 0;
   public TCF:number = 0;
+  public messageError = '';
   private subscription: Subscription;
 
   constructor(
@@ -43,6 +44,18 @@ export class TechFactorsTableComponent implements OnInit {
     for (let index = 0; index < levels.length; index++) {
       this.TFactorElements[index] = +weights[index].textContent * +(<HTMLInputElement>levels[index]).value;
       this.dataService.data.technicalFactorsLevels[index] = (<HTMLInputElement>levels[index]).value;
+
+      // Validate if a level is out of range
+      if(+(<HTMLInputElement>levels[index]).value > 5 || +(<HTMLInputElement>levels[index]).value < 0){
+        this.TFactorElements = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        this.messageError = 'Nivel fuera de rango';
+        break;
+
+      } else {
+        this.messageError = '';
+
+      }
+      
     }
 
     this.TFactor = 0;

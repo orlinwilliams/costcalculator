@@ -48,7 +48,10 @@ export class CostsComponent implements OnInit, OnChanges {
         'numberOfTeamMembers': data.numberOfTeamMembers,
         'effort': data.effort,
       });
-      this.generateCostsAndTimes();
+      // this.generateCostsAndTimes();
+      this.renderChart('update','costChart', this.dataService.data.VMTCOCOMO, this.dataService.data.VMT);
+      this.renderChart('update', 'timeChart', this.dataService.data.COCOMODataset, this.dataService.data.UseCaseDataset);
+
     });
   }
 
@@ -147,7 +150,7 @@ export class CostsComponent implements OnInit, OnChanges {
                   },
                   scaleLabel: {
                     display: true,
-                    labelString:'costo (L)',
+                    labelString:'Costo (L)',
                     fontSize: 14,
                   },
                 },
@@ -171,7 +174,7 @@ export class CostsComponent implements OnInit, OnChanges {
 
   //Evento que captura el precio mínimo 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.currentPrice > 0) {
+    if (this.currentPrice > 0 && !isNaN(this.currentPrice)) {
       this.formCosts.patchValue({ hourValue: this.currentPrice.toFixed(2) });
     }
   }
@@ -195,6 +198,9 @@ export class CostsComponent implements OnInit, OnChanges {
       return +((hourMan/+(this.formCosts.get('numberOfTeamMembers').value)).toFixed(2))
     });
     this.renderChart('update', 'timeChart', COCOMODataset, UseCaseDataset);
+
+    this.dataService.data.COCOMODataset = COCOMODataset;
+    this.dataService.data.UseCaseDataset = UseCaseDataset;
 
     //--------------Grafica de costos---------------
   
@@ -222,6 +228,9 @@ export class CostsComponent implements OnInit, OnChanges {
     // dataset de prueba [150000, 143000, 142000, 122000, 133000]
 
     this.renderChart('update','costChart',this.VMTCOCOMO, this.VMT);
+
+    this.dataService.data.VMTCOCOMO = this.VMTCOCOMO;
+    this.dataService.data.VMT = this.VMT;
   }
 
   ngOnDestroy() {

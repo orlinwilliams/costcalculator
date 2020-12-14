@@ -61,9 +61,9 @@
         </div>
       </div>
       <button
-        class="btn btn-cost"
-        
+        class="btn btn-cost"        
         (click)="generateCostsAndTimes()"
+        [disabled]="!formCosts.valid"
       >
       <!-- Moví esta parte de la línea 65: [disabled]="!formCosts.valid" -->
         Generar costos
